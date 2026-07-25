@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karir di SVO Yogyakarta</title>
+  <meta name="description" content="Bergabunglah dengan tim SVO Yogyakarta. Posisi terbuka di bidang sales, creative, performance marketing, content, dan customer support." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #FFF04D;
+      --yellow-hover: #e8d800;
+      --cream: #F6F1E7;
+      --black: #0A0A0A;
+      --white: #FAFAFA;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--cream); color: var(--black); overflow-x: hidden; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--black); color: var(--cream);
+      text-align: center; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; padding: 10px 20px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--cream); border-bottom: 2px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 68px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo img { height: 32px; width: auto; }
+    .nav-logo-sub {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(0,0,0,0.3); border-left: 2px solid rgba(0,0,0,0.1); padding-left: 12px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(0,0,0,0.4); transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--black); }
+    .nav-cta {
+      background: var(--black) !important; color: var(--cream) !important;
+      padding: 10px 20px 8px !important; border-radius: 2px; opacity: 1 !important;
+    }
+    .nav-hamburger { display: none; cursor: pointer; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--black); margin: 5px 0; }
+
+    /* ── HELPERS ── */
+    .sec { padding: 80px 40px; }
+    .wrap { max-width: 1200px; margin: 0 auto; }
+    .sec-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(0,0,0,0.35); margin-bottom: 14px; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── HERO ── */
+    .karir-hero { padding: 88px 40px 72px; border-bottom: 2px solid rgba(0,0,0,0.07); }
+    .karir-hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 340px; gap: 64px; align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 2px solid rgba(0,0,0,0.15); border-radius: 100px;
+      padding: 6px 16px; width: fit-content;
+      font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(0,0,0,0.4); margin-bottom: 28px;
+    }
+    .hero-tag .dot { width: 7px; height: 7px; background: var(--black); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .karir-headline {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 8vw, 8rem);
+      line-height: 0.88; text-transform: uppercase; color: var(--black); margin-bottom: 24px;
+    }
+    .karir-headline .inv { background: var(--black); color: var(--cream); padding: 2px 8px; display: inline-block; }
+    .karir-body { font-size: 1rem; font-weight: 500; color: rgba(0,0,0,0.45); line-height: 1.75; margin-bottom: 32px; max-width: 480px; }
+    .btn-black {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--black); color: var(--cream);
+      font-weight: 800; font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 16px 32px; border-radius: 2px; transition: background 0.2s, transform 0.1s;
+    }
+    .btn-black:hover { background: #222; transform: translateY(-1px); }
+
+    /* Hero right card */
+    .hero-positions-card {
+      background: var(--black); border-radius: 4px; padding: 28px 24px; display: flex; flex-direction: column; gap: 12px;
+    }
+    .hpc-ttl { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 6px; }
+    .hpc-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; font-weight: 700; color: rgba(255,255,255,0.75);
+      border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 12px;
+    }
+    .hpc-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .hpc-dot { width: 6px; height: 6px; background: var(--yellow); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── TICKER ── */
+    .ticker { background: var(--black); overflow: hidden; padding: 11px 0; }
+    .ticker-track { display: flex; animation: ticker 24s linear infinite; white-space: nowrap; }
+    .ticker-item { font-family: var(--font-display); font-size: 1.2rem; color: var(--cream); padding: 0 28px; letter-spacing: 0.08em; }
+    .ticker-dot { color: rgba(255,255,255,0.2); }
+    @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    /* ── FORM ── */
+    .lamar-sec { background: var(--cream); border-top: 2px solid rgba(0,0,0,0.07); }
+    .lamar-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .lamar-left h2 { font-family: var(--font-display); font-size: clamp(3rem, 5vw, 5.5rem); line-height: 0.9; color: var(--black); text-transform: uppercase; margin-bottom: 18px; }
+    .lamar-left h2 .yb { background: var(--black); color: var(--cream); padding: 2px 8px; }
+    .lamar-left p { font-size: 0.93rem; color: rgba(0,0,0,0.45); line-height: 1.75; }
+    .fg { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .fl { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,0,0,0.35); }
+    .fi {
+      background: rgba(255,255,255,0.9); border: 2px solid rgba(0,0,0,0.1); border-radius: 3px;
+      padding: 13px 16px; font-size: 0.95rem; font-family: var(--font-body);
+      color: var(--black); width: 100%; transition: border-color 0.2s;
+    }
+    .fi:focus { outline: none; border-color: var(--black); box-shadow: 0 0 0 3px rgba(0,0,0,0.06); }
+    .fi::placeholder { color: rgba(0,0,0,0.2); }
+    .fi option { background: #fff; }
+    .fi-file {
+      background: rgba(255,255,255,0.9); border: 2px dashed rgba(0,0,0,0.18); border-radius: 3px;
+      padding: 14px 16px; font-size: 0.9rem; font-family: var(--font-body); color: var(--black); width: 100%;
+    }
+    .btn-submit-k {
+      width: 100%; background: var(--black); color: var(--cream);
+      border: none; border-radius: 3px; padding: 17px;
+      font-family: var(--font-body); font-size: 1rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s, transform 0.1s;
+      display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 6px;
+    }
+    .btn-submit-k:hover { background: #222; transform: translateY(-1px); }
+    .form-note { text-align: center; font-size: 0.76rem; color: rgba(0,0,0,0.25); margin-top: 10px; }
+
+    /* ── FOOTER ── */
+    footer { background: #E8E3D9; border-top: 2px solid rgba(0,0,0,0.1); padding: 52px 40px 36px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; margin-bottom: 36px; flex-wrap: wrap; }
+    .footer-logo img { height: 26px; width: auto; }
+    .footer-tagline { font-size: 0.82rem; color: rgba(0,0,0,0.45); max-width: 280px; line-height: 1.65; margin-top: 12px; }
+    .footer-links-ttl { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(0,0,0,0.35); margin-bottom: 12px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 0.83rem; color: rgba(0,0,0,0.55); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--black); }
+    .footer-bottom { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.1); flex-wrap: wrap; gap: 10px; }
+    .footer-copy, .footer-powered { font-size: 0.76rem; color: rgba(0,0,0,0.4); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .karir-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-positions-card { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .lamar-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; height: 60px; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: absolute;
+        top: 60px; left: 0; right: 0; z-index: 99;
+        background: var(--cream); border-bottom: 1px solid rgba(0,0,0,0.08);
+        padding: 20px 24px; gap: 18px; align-items: flex-start;
+      }
+      .nav-hamburger { display: block; }
+      .karir-hero { padding: 56px 20px 44px; }
+      .karir-headline { font-size: clamp(3.2rem, 13vw, 5.5rem); }
+      .sec { padding: 52px 20px; }
+      .pos-card { padding: 22px 16px; }
+      footer { padding: 44px 20px 28px; }
+      .footer-top { flex-direction: column; gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">📍 Yogyakarta &nbsp;·&nbsp; SVO.AI &nbsp;·&nbsp; Bergabunglah Bersama Tim Kami</div>
+
+  <nav>
+    <div class="nav-logo">
+      <img src="https://svo.ai/assets/header-BwSq1Zfn.svg" alt="SVO.AI" />
+      <div class="nav-logo-sub">Yogyakarta</div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#tentang">Tentang SVO</a></li>
+      <li><a href="entrepreneur.html">Digital Entrepreneur</a></li>
+      <li><a href="#lamar" class="nav-cta">Lamar Sekarang</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="karir-hero">
+    <div class="karir-hero-inner">
+      <div class="reveal">
+        <div class="hero-tag"><span class="dot"></span> Posisi Terbuka</div>
+        <h1 class="karir-headline">
+          BANGUN<br/>
+          KARIR DI<br/>
+          <span class="inv">EKOSISTEM</span><br/>
+          DIGITAL.
+        </h1>
+        <p class="karir-body">Gabung dengan tim SVO Yogyakarta — tempat di mana sales, kreativitas, dan teknologi berjalan bersama. Kami cari orang yang mau belajar dan tumbuh cepat.</p>
+        <a href="#lamar" class="btn-black">Lamar Sekarang ↗</a>
+      </div>
+      <div class="hero-positions-card reveal">
+        <div class="hpc-ttl">Posisi Tersedia</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Sales Manager</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Sales Team Leader</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Senior Sales Closer</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Inside Sales Specialist</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Media Buyer (Meta Ads)</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Media Buyer (Google / TikTok Ads)</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Performance Marketing Analyst</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Campaign Manager</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Creative Lead</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Copywriter (Ad Copy Specialist)</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Content Creator</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Social Media Manager</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Customer Success Manager</div>
+        <div class="hpc-item"><span class="hpc-dot"></span>Customer Support</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ticker -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item">SALES MANAGER <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">MEDIA BUYER <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">CAMPAIGN MANAGER <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">SENIOR CLOSER <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">COPYWRITER <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">PERFORMANCE ANALYST <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">CONTENT CREATOR <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">CUSTOMER SUCCESS <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">SALES MANAGER <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">MEDIA BUYER <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">CAMPAIGN MANAGER <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">SENIOR CLOSER <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">COPYWRITER <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">PERFORMANCE ANALYST <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">CONTENT CREATOR <span class="ticker-dot">◆</span></span>
+      <span class="ticker-item">CUSTOMER SUCCESS <span class="ticker-dot">◆</span></span>
+      </div>
+  </div>
+
+  <!-- Application Form -->
+  <section class="lamar-sec sec" id="lamar">
+    <div class="wrap lamar-inner">
+      <div class="lamar-left reveal">
+        <div class="sec-label">Formulir Lamaran</div>
+        <h2>LAMAR<br/><span class="yb">SEKARANG</span>.</h2>
+        <p>Isi form ini dan tim kami akan menghubungimu via WhatsApp dalam 1–2 hari kerja.</p>
+      </div>
+      <div class="reveal">
+        <form id="karirForm">
+          <div class="fg">
+            <label class="fl">Nama Lengkap *</label>
+            <input class="fi" type="text" name="k_nama" placeholder="Nama lengkap kamu" required />
+          </div>
+          <div class="fg">
+            <label class="fl">Nomor WhatsApp *</label>
+            <input class="fi" type="tel" name="k_wa" placeholder="Contoh: 08123456789" required />
+          </div>
+          <div class="fg">
+            <label class="fl">Email *</label>
+            <input class="fi" type="email" name="k_email" placeholder="emailkamu@domain.com" required />
+          </div>
+          <div class="fg">
+            <label class="fl">Posisi yang Dilamar *</label>
+            <select class="fi" name="k_posisi" required>
+              <option value="" disabled selected>Pilih posisi</option>
+              <optgroup label="── Sales">
+              <option>Sales Manager</option>
+              <option>Sales Team Leader</option>
+              <option>Senior Sales Closer</option>
+              <option>Inside Sales Specialist</option>
+              <option>Account Executive</option>
+              </optgroup>
+              <optgroup label="── Performance Marketing">
+              <option>Media Buyer (Meta Ads)</option>
+              <option>Media Buyer (Google Ads)</option>
+              <option>Media Buyer (TikTok Ads)</option>
+              <option>Campaign Manager</option>
+              <option>Performance Marketing Analyst</option>
+              <option>Conversion Rate Optimizer (CRO)</option>
+              <option>Landing Page Specialist</option>
+              </optgroup>
+              <optgroup label="── Creative & Content">
+              <option>Creative Lead</option>
+              <option>Copywriter / Ad Copy Specialist</option>
+              <option>Content Creator (Video & Photo)</option>
+              <option>Graphic Designer</option>
+              <option>Video Editor</option>
+              </optgroup>
+              <optgroup label="── Digital & Community">
+              <option>Social Media Manager</option>
+              <option>Community Manager</option>
+              <option>Customer Success Manager</option>
+              <option>Customer Support Specialist</option>
+              <option>WhatsApp Sales Specialist</option>
+              </optgroup>
+              <option>Open Role (kirim CV)</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fl">Pengalaman Kerja *</label>
+            <select class="fi" name="k_exp" required>
+              <option value="" disabled selected>Pilih pengalaman</option>
+              <option>Fresh Graduate / Belum berpengalaman</option>
+              <option>1–2 Tahun</option>
+              <option>3–5 Tahun</option>
+              <option>Lebih dari 5 Tahun</option>
+            </select>
+          </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <img src="https://svo.ai/assets/header-BwSq1Zfn.svg" alt="SVO.AI" style="height:26px;" />
+          </div>
+          <p class="footer-tagline">SVO Yogyakarta — high performance marketer group dalam ekosistem SVO. Powered by SVO.AI.</p>
+        </div>
+        <div>
+          <div class="footer-links-ttl">Navigasi</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#tentang">Tentang SVO</a></li>
+            <li><a href="index.html#sistem">Sistem FIV5S</a></li>
+            <li><a href="entrepreneur.html">Digital Entrepreneur</a></li>
+            <li><a href="karir.html">Karir</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-links-ttl">Platform</div>
+          <ul class="footer-links">
+            <li><a href="https://svo.ai" target="_blank" rel="noopener">SVO.AI</a></li>
+            <li><a href="https://www.wellous.com" target="_blank" rel="noopener">Wellous</a></li>
+            <li><a href="https://www.instagram.com/svoyogyakarta_kaliurang/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:5px;position:relative;top:-1px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>SVO Yogyakarta</a></li>
+            <li><a href="https://www.instagram.com/svoyogyakarta_kaliurang/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:5px;position:relative;top:-1px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>Warga SVO Yogyakarta</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 SVO Yogyakarta. All rights reserved.</p>
+        <p class="footer-powered">Powered by SVO.AI · svo2u.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.getElementById('navLinks').querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ⚠️ GANTI DENGAN NOMOR WA ADMIN (contoh: '628123456789')
+    const ADMIN_WA = '6285147288008';
+    document.getElementById('karirForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nama    = this.querySelector('[name="k_nama"]').value.trim();
+      const wa      = this.querySelector('[name="k_wa"]').value.trim();
+      const email   = this.querySelector('[name="k_email"]').value.trim();
+      const posisi  = this.querySelector('[name="k_posisi"]').value;
+      const exp     = this.querySelector('[name="k_exp"]').value;
+      const cv      = this.querySelector('[name="k_cv"]').value.trim();
+      if (!nama || !wa || !email || !posisi || !exp) { alert('Mohon lengkapi semua field wajib.'); return; }
+      const msg = encodeURIComponent(
+        `Halo! Saya ingin melamar posisi di SVO Yogyakarta.\n\n` +
+        `*Nama:* ${nama}\n*WhatsApp:* ${wa}\n*Email:* ${email}\n` +
+        `*Posisi:* ${posisi}\n*Pengalaman:* ${exp}\n` +
+        (cv ? `*Nama File CV:* ${cv}\n` : '') +
+        `\nTerima kasih!`
+      );
+      window.open(`https://wa.me/${ADMIN_WA}?text=${msg}`, '_blank');
+    });
+  </script>
+</body>
+</html>
+                                                 
